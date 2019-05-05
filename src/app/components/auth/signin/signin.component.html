@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <form (ngSubmit)="onSignin(f)" [formGroup]="signinForm">
+      <div class="form-group">
+        <label for="usernameOrEmail">Username/ Email Id</label>
+        <input
+          type="text"
+          name="usernameOrEmail"
+          formControlName="usernameOrEmail"
+          class="form-control"
+          placeholder="username/email"
+        />
+        <div
+          *ngIf="submitted && f.usernameOrEmail.errors"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f.usernameOrEmail.errors.required">
+            Username/Email is required
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="Password"
+          formControlName="password"
+        />
+        <div *ngIf="submitted && f.password.errors" class="alert alert-danger">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-primary" type="submit">
+        Sign In
+      </button>
+      <br />
+      <div *ngIf="messageObj" class="alert alert-danger">
+        {{ messageObj.message }}
+      </div>
+    </form>
+  </div>
+</div>
